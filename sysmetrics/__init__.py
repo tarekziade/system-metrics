@@ -1,7 +1,6 @@
 import psutil
 import asyncio
 import functools
-import os
 import signal
 import graypy
 import logging
@@ -36,7 +35,6 @@ def _probe():
 
     logger.info(json.dumps(info))
     loop.call_later(1., _probe)
-
 
 
 for signame in ('SIGINT', 'SIGTERM'):
