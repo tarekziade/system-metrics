@@ -9,6 +9,7 @@ import json
 
 loop = asyncio.get_event_loop()
 logger = logging.getLogger('sysmetrics')
+RESOLUTION = .5
 
 
 def _exit(signame):
@@ -34,7 +35,7 @@ def _probe():
     info['memory'] = memory
 
     logger.info(json.dumps(info))
-    loop.call_later(1., _probe)
+    loop.call_later(RESOLUTION, _probe)
 
 
 for signame in ('SIGINT', 'SIGTERM'):
@@ -45,7 +46,7 @@ for signame in ('SIGINT', 'SIGTERM'):
 handler = graypy.GELFHandler('localhost', 12201)
 logger.addHandler(handler)
 logger.setLevel(logging.INFO)
-loop.call_later(1., _probe)
+loop.call_later(RESOLUTION, _probe)
 
 try:
     loop.run_forever()
