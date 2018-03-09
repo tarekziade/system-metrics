@@ -12,7 +12,7 @@ with open('README.rst') as f:
 
 
 setup(name='system-metrics',
-      version="0.1",
+      version="0.2",
       long_description=description.strip(),
       description=("System probe."),
       author="Tarek Ziade",
