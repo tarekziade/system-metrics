@@ -7,9 +7,16 @@ with open('requirements.txt') as f:
             and not dep.startswith('-e')]
     install_requires = deps
 
+with open('README.rst') as f:
+    description = f.read()
+
 
 setup(name='system-metrics',
       version="0.1",
+      long_description=description.strip(),
+      description=("System probe."),
+      author="Tarek Ziade",
+      author_email="tarek@ziade.org",
       packages=find_packages(),
       zip_safe=False,
       include_package_data=True,
