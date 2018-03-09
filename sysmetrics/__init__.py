@@ -38,17 +38,17 @@ def _probe():
     loop.call_later(RESOLUTION, _probe)
 
 
-for signame in ('SIGINT', 'SIGTERM'):
-    loop.add_signal_handler(getattr(signal, signame),
-                            functools.partial(_exit, signame))
+def main():
+    for signame in ('SIGINT', 'SIGTERM'):
+        loop.add_signal_handler(getattr(signal, signame),
+                                functools.partial(_exit, signame))
 
-
-handler = graypy.GELFHandler('localhost', 12201)
-logger.addHandler(handler)
-logger.setLevel(logging.INFO)
-loop.call_later(RESOLUTION, _probe)
-
-try:
-    loop.run_forever()
-finally:
-    loop.close()
+    handler = graypy.GELFHandler('localhost', 12201)
+    logger.addHandler(handler)
+    logger.setLevel(logging.INFO)
+    loop.call_later(RESOLUTION, _probe)
+    print("Probing cpu, memory and disk...")
+    try:
+        loop.run_forever()
+    finally:
+        loop.close()

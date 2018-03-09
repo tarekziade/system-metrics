@@ -1,4 +1,6 @@
-# system-metrics
+system-metrics
+--------------
+
 Generates system info metrics
 
 - Runs in an asyncio loop
